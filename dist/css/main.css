@@ -54,13 +54,19 @@ main .column textarea:placeholder-shown {
 }
 main .column small {
   display: inline-block;
-  margin: 8px 0 1px 0;
+  margin-top: 5px;
 }
 main .column .ctn .btn {
+  font-size: 0.8rem;
+  cursor: pointer;
   text-decoration-line: underline;
+  transition: color 0.5s ease-in;
 }
 main .column .ctn .btn:first-of-type {
   margin-right: 12px;
+}
+main .column .ctn .btn:hover {
+  color: #f4f4f4;
 }
 main .column .output {
   width: 100%;
@@ -72,6 +78,18 @@ main .column .output {
   background: linear-gradient(linear-gradient(to right bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)));
   border-radius: 1.5rem;
   backdrop-filter: blur(2rem);
+}
+main .first__column {
+  transition: transform 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+main .first__column::before {
+  content: "JSON";
+}
+main .third__column {
+  transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+main .third__column::before {
+  content: "CSV";
 }
 main .second__column {
   width: 40px;
@@ -103,6 +121,14 @@ footer a:hover {
 .rotate {
   transform: rotate(180deg);
   -moz-transform: rotate(180deg);
+}
+
+.translate__first {
+  transform: translateX(127.3%);
+}
+
+.translate__third {
+  transform: translateX(-127.3%);
 }
 
 /*# sourceMappingURL=main.css.map */

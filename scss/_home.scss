@@ -25,7 +25,6 @@ main {
   margin: 0 auto;
   width: 70%;
   height: 80vh;
-  // border: 1px solid #fff;
   border-radius: 2rem;
   padding: 1.5rem;
   display: flex;
@@ -61,15 +60,21 @@ main {
 
     small {
       display: inline-block;
-      margin: 8px 0 1px 0;
+      margin-top: 5px;
     }
 
     .ctn {
       .btn {
-        // text-transform: lowercase;
+        font-size: 0.8rem;
+        cursor: pointer;
         text-decoration-line: underline;
+        transition: color 0.5s ease-in;
         &:first-of-type {
           margin-right: 12px;
+        }
+
+        &:hover {
+          color: #f4f4f4;
         }
       }
     }
@@ -88,6 +93,24 @@ main {
       );
       border-radius: 1.5rem;
       backdrop-filter: blur(2rem);
+    }
+  }
+
+  .first__column {
+    transition: transform 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    // transform: translateX(127.3%);
+
+    &::before {
+      content: 'JSON';
+    }
+  }
+
+  .third__column {
+    transition: transform 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);
+    // transform: translateX(-127.3%);
+
+    &::before {
+      content: 'CSV';
     }
   }
 
@@ -125,4 +148,11 @@ footer {
 .rotate {
   transform: rotate(180deg);
   -moz-transform: rotate(180deg);
+}
+
+.translate__first {
+  transform: translateX(127.3%);
+}
+.translate__third {
+  transform: translateX(-127.3%);
 }

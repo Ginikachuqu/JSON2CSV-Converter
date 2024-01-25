@@ -104,6 +104,23 @@ main .column .output {
   border-radius: 1.5rem;
   backdrop-filter: blur(2rem);
 }
+
+main .column .copy__btn {
+  background: transparent;
+  outline: none;
+  border: none;
+  padding: .25rem;
+  color: #f4f4f4;
+  margin-top: .5rem;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+  font-family: "Cutive Mono", monospace;
+}
+
+main .column .copy__btn:hover {
+  border-bottom: 1px solid #f4f4f4;
+}
+
 main .first__column {
   transition: transform 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }

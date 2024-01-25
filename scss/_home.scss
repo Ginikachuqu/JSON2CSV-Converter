@@ -1,6 +1,6 @@
-*,
-*::after,
-*::before {
+@import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap");
+
+*, *::after, *::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -23,82 +23,91 @@ header {
 
 main {
   margin: 0 auto;
-  width: 70%;
-  height: 80vh;
-  border-radius: 2rem;
+  max-width: 550px;
+  min-height: 400px;
+  border-radius: 1.5rem;
   padding: 1.5rem;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
   background: #090909;
-  background: -moz-linear-gradient(
-    linear-gradient(to right bottom, rgba(32, 32, 32, 0.7), rgba(0, 0, 0, 0.1))
-  );
-  background: linear-gradient(
-    linear-gradient(to right bottom, rgba(20, 20, 20, 0.3), rgba(0, 0, 0, 0.1))
-  );
+  background: -moz-linear-gradient(linear-gradient(to right bottom, rgba(32, 32, 32, 0.7), rgba(0, 0, 0, 0.1)));
+  background: linear-gradient(linear-gradient(to right bottom, rgba(20, 20, 20, 0.3), rgba(0, 0, 0, 0.1)));
 
-  .column {
+  .container {
+    width: 100%;
     height: 100%;
-    // border: 1px solid #fff;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 
-    textarea {
-      resize: none;
-      width: 100%;
-      min-height: 45%;
-      border-radius: 1.5rem;
-      outline: none;
-      border: none;
-      padding: 1rem;
-      background: transparent;
-      color: #fff;
-      border: 1px solid #fff;
-      &:placeholder-shown {
+    .column {
+      height: 100%;
+
+      textarea {
+        resize: none;
+        display: block;
+        min-height: 151px;
+        border-radius: 1.5rem;
+        outline: none;
+        border: none;
+        padding: 1rem;
+        background: transparent;
         color: #fff;
-      }
-    }
-
-    small {
-      display: inline-block;
-      margin-top: 5px;
-    }
-
-    .ctn {
-      .btn {
-        font-size: 0.8rem;
-        cursor: pointer;
-        text-decoration-line: underline;
-        transition: color 0.5s ease-in;
-        &:first-of-type {
-          margin-right: 12px;
+        border: 1px solid #fff;
+        
+        &::-webkit-scrollbar {
+          width: 5px;
         }
 
-        &:hover {
-          color: #f4f4f4;
+        &::-webkit-scrollbar-thumb {
+          background-color: #4caf50;
+          border-radius: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background-color: #f0f0f0;
+          display: none;
+        }
+
+        &:placeholder-shown {
+          color: #fff;
         }
       }
-    }
 
-    .output {
-      width: 100%;
-      height: 42%;
-      margin-top: 1rem;
-      padding: 0.7rem;
-      background: #131313;
-      background: -moz-linear-gradient(
-        linear-gradient(to right bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1))
-      );
-      background: linear-gradient(
-        linear-gradient(to right bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1))
-      );
-      border-radius: 1.5rem;
-      backdrop-filter: blur(2rem);
+      small {
+        display: inline-block;
+        margin-top: 5px;
+      }
+
+      .ctn {
+        .btn {
+          font-size: 0.8rem;
+          cursor: pointer;
+          text-decoration-line: underline;
+          transition: color 0.5s ease-in;
+
+          &:first-of-type {
+            margin-right: 12px;
+          }
+
+          &:hover {
+            color: #f4f4f4;
+          }
+        }
+      }
+
+      .output {
+        width: 100%;
+        min-height: 151px;
+        margin-top: 1rem;
+        padding: 0.7rem;
+        background: #131313;
+        border-radius: 1.5rem;
+        backdrop-filter: blur(2rem);
+      }
     }
   }
 
   .first__column {
     transition: transform 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    // transform: translateX(127.3%);
 
     &::before {
       content: 'JSON';
@@ -106,8 +115,7 @@ main {
   }
 
   .third__column {
-    transition: transform 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);
-    // transform: translateX(-127.3%);
+    transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 
     &::before {
       content: 'CSV';
@@ -151,8 +159,9 @@ footer {
 }
 
 .translate__first {
-  transform: translateX(127.3%);
+  transform: translateX(135%);
 }
+
 .translate__third {
-  transform: translateX(-127.3%);
+  transform: translateX(-135%);
 }

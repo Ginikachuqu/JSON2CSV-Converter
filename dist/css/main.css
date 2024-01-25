@@ -23,24 +23,31 @@ header h2 {
 
 main {
   margin: 0 auto;
-  width: 70%;
-  height: 80vh;
-  border-radius: 2rem;
+  max-width: 550px;
+  min-height: 400px;
+  border-radius: 1.5rem;
   padding: 1.5rem;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
   background: #090909;
   background: -moz-linear-gradient(linear-gradient(to right bottom, rgba(32, 32, 32, 0.7), rgba(0, 0, 0, 0.1)));
   background: linear-gradient(linear-gradient(to right bottom, rgba(20, 20, 20, 0.3), rgba(0, 0, 0, 0.1)));
 }
-main .column {
+
+main .container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+main .container .column {
   height: 100%;
 }
 main .column textarea {
   resize: none;
-  width: 100%;
-  min-height: 45%;
+  display: block;
+  /* width: 100%; */
+  min-height: 151px;
   border-radius: 1.5rem;
   outline: none;
   border: none;
@@ -48,7 +55,25 @@ main .column textarea {
   background: transparent;
   color: #fff;
   border: 1px solid #fff;
+
+  scrollbar-color: #dcdcdc #f0f0f0; /* Firefox */
+  scrollbar-width: thin;
 }
+
+textarea::-webkit-scrollbar {
+  width: 5px; /* WebKit browsers */
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: #4caf50; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Rounded corners */
+}
+
+textarea::-webkit-scrollbar-track {
+  background-color: #f0f0f0; /* Color of the scrollbar track */
+  display: none;
+}
+
 main .column textarea:placeholder-shown {
   color: #fff;
 }
@@ -70,12 +95,12 @@ main .column .ctn .btn:hover {
 }
 main .column .output {
   width: 100%;
-  height: 42%;
+  min-height: 151px;
   margin-top: 1rem;
   padding: 0.7rem;
   background: #131313;
-  background: -moz-linear-gradient(linear-gradient(to right bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)));
-  background: linear-gradient(linear-gradient(to right bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)));
+  /* background: -moz-linear-gradient(to right bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)); */
+  /* background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)); */
   border-radius: 1.5rem;
   backdrop-filter: blur(2rem);
 }
@@ -124,11 +149,11 @@ footer a:hover {
 }
 
 .translate__first {
-  transform: translateX(127.3%);
+  transform: translateX(135%);
 }
 
 .translate__third {
-  transform: translateX(-127.3%);
+  transform: translateX(-135%);
 }
 
 /*# sourceMappingURL=main.css.map */

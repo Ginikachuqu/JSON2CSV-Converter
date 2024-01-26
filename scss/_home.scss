@@ -15,6 +15,7 @@ body {
 header {
   padding: 1rem;
   text-align: center;
+
   h2 {
     font-size: 2rem;
   }
@@ -42,6 +43,7 @@ main {
 
     .column {
       height: 100%;
+
       textarea {
         resize: none;
         display: block;
@@ -53,17 +55,21 @@ main {
         background: transparent;
         color: #fff;
         border: 1px solid #fff;
+
         &::-webkit-scrollbar {
           width: 5px;
         }
+
         &::-webkit-scrollbar-thumb {
           background-color: #4caf50;
           border-radius: 5px;
         }
+
         &::-webkit-scrollbar-track {
           background-color: #f0f0f0;
           display: none;
         }
+
         &:placeholder-shown {
           color: #fff;
         }
@@ -79,10 +85,12 @@ main {
           font-size: 0.8rem;
           cursor: pointer;
           text-decoration-line: underline;
-          transition: color 0.5s ease-in;
+          transition: color 0.5s ease-in-out;
+
           &:first-of-type {
             margin-right: 12px;
           }
+
           &:hover {
             color: #f4f4f4;
           }
@@ -103,12 +111,13 @@ main {
         background: transparent;
         outline: none;
         border: none;
-        padding: .25rem;
+        padding: 0.25rem;
         color: #f4f4f4;
-        margin-top: .5rem;
+        margin-top: 0.5rem;
         cursor: pointer;
-        transition: .3s ease-in-out;
+        transition: 0.3s ease-in-out;
         font-family: "Cutive Mono", monospace;
+
         &:hover {
           border-bottom: 1px solid #f4f4f4;
         }
@@ -118,6 +127,7 @@ main {
 
   .first__column {
     transition: transform 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
     &::before {
       content: 'JSON';
     }
@@ -125,6 +135,7 @@ main {
 
   .third__column {
     transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+
     &::before {
       content: 'CSV';
     }
@@ -139,6 +150,7 @@ main {
     align-self: center;
     cursor: pointer;
     transition: transform 0.5s ease-in-out;
+
     svg {
       width: 100%;
       height: 100%;
@@ -146,12 +158,60 @@ main {
   }
 }
 
+.error__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s ease-in-out;
+
+  .error__container-inner {
+    width: 50%;
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4f4f4;
+    border-radius: 0.85rem;
+    color: #000;
+
+    p {
+      font-weight: bold;
+    }
+
+    .close__btn {
+      cursor: pointer;
+      font-size: 1.25rem;
+      transition: 0.25s ease-in-out;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &.open {
+    transform: translateY(0px);
+  }
+
+  &.closed {
+    transform: translateY(-100%);
+  }
+}
+
 footer {
   margin-top: 1.2rem;
   text-align: center;
+
   a {
     color: #fff;
     transition: color 0.5s ease;
+
     &:hover {
       color: #f4f4f4;
     }

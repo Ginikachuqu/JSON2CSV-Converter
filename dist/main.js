@@ -2,12 +2,25 @@
 const JSONInput = document.querySelector('#json__field')
 const JSONOutput = document.querySelector('#json__output')
 const jsoncopyBtn = document.querySelector('.json__copy')
+const jsonClearField = document.querySelector('#json__clear')
 const CSVInput = document.querySelector('#csv__field')
 const CSVOutput = document.querySelector('#csv__output')
 const csvcopyBtn = document.querySelector('.csv__copy')
+const csvClearField = document.querySelector('#csv__clear')
 const svgBox = document.querySelector(".second__column");
 const first__column = document.querySelector(".first__column");
 const third__column = document.querySelector(".third__column");
+
+// File Inputs
+const jsonFileBtn = document.querySelector('.json__file')
+const jsonFileInput = document.querySelector('#jsonfileInput')
+const csvFileBtn = document.querySelector('.csv__file')
+const csvFileInput = document.querySelector('#csvfileInput')
+
+// Error alert
+const errorContainer = document.querySelector('.error__container')
+const errorMessage = document.querySelector('.error__container-inner p')
+const closeBtn = document.querySelector('.close__btn')
 
 // SVG box transition
 svgBox.addEventListener("click", (e) => {
@@ -17,9 +30,7 @@ svgBox.addEventListener("click", (e) => {
 })
 
 // Converter section
-// function convertToJson(text) {
-  
-// }
+
 
 function jsonToCsv(jsonData) {
   // Check if jsonData is an array and has at least one object
@@ -182,3 +193,101 @@ csvcopyBtn.addEventListener('click', function() {
   alert('Text has been copied to the clipboard!');
 });
 
+// Clear Fields
+jsonClearField.addEventListener('click', (e) => {
+  JSONInput.value = ''
+  JSONOutput.value = ''
+  console.log(JSONInput.value)
+})
+
+csvClearField.addEventListener('click', (e) => {
+  CSVInput.value = ''
+  CSVOutput.value = ''
+})
+
+// Read and convert files
+jsonFileBtn.addEventListener('click', (e) => {
+  jsonFileInput.click()
+})
+
+jsonFileInput.addEventListener('change', function(event) {
+  const fileInput = event.target;
+  const file = fileInput.files[0];
+  console.log(fileInput)
+  console.log(file)
+
+  if (file) {
+    const allowedExtensions = ['json', 'txt'];
+    const fileNameParts = file.name.split('.');
+    const fileExtension = fileNameParts[fileNameParts.length - 1];
+
+
+    if (allowedExtensions.includes(fileExtension.toLowerCase())) {
+      console.log('runs')
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        const fileContent = e.target.result;
+        console.log(fileContent)
+        JSONInput.value = fileContent;
+        CSVOutput.value = jsonToCsv(fileContent);
+      };
+
+      reader.readAsText(file); // Read the file as text
+    } else {
+      errorMessage.textContent = 'Invalid file format. Please select a .json, .csv, or .txt file.'
+      if (errorContainer.classList.contains('closed')) {
+        errorContainer.classList.remove('closed')
+        errorContainer.classList.add('open')
+      }
+      // Clear the file input
+      fileInput.value = '';
+    }
+  }
+});
+
+csvFileBtn.addEventListener('click', (e) => {
+  csvFileInput.click()
+})
+
+csvFileInput.addEventListener('change', function(event) {
+  const fileInput = event.target;
+  const file = fileInput.files[0];
+  console.log(fileInput)
+  console.log(file)
+
+  if (file) {
+    const allowedExtensions = ['csv', 'txt'];
+    const fileNameParts = file.name.split('.');
+    const fileExtension = fileNameParts[fileNameParts.length - 1];
+
+
+    if (allowedExtensions.includes(fileExtension.toLowerCase())) {
+      console.log('runs')
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        const fileContent = e.target.result;
+        console.log(fileContent)
+        CSVInput.value = fileContent;
+        JSONOutput.value = csvToJson(fileContent);
+      };
+
+      reader.readAsText(file); // Read the file as text
+    } else {
+      errorMessage.textContent = 'Invalid file format. Please select a .json, .csv, or .txt file.'
+      if (errorContainer.classList.contains('closed')) {
+        errorContainer.classList.remove('closed')
+        errorContainer.classList.add('open')
+      }
+      // Clear the file input
+      fileInput.value = '';
+    }
+  }
+});
+
+// Error field
+closeBtn.addEventListener('click', (e) => {
+  errorContainer.classList.remove('open')
+  errorContainer.classList.add('closed')
+})

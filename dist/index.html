@@ -17,8 +17,9 @@
         <div class="column first__column">
           <textarea name="json" id="json__field" placeholder="Enter text here..."></textarea>
           <div class="ctn">
-            <span class="btn" id="clr__fields">Clear Fields</span> <br>
-            <span class="btn">Add JSON File</span>
+            <button class="btn" id="json__clear">Clear Fields</button> <br>
+            <button class="btn json__file">Add JSON File</button>
+            <input type="file" id="jsonfileInput" style="display: none;" accept=".json, .txt">
           </div>
           <textarea readonly class="output" id="json__output"></textarea>
           <button class="copy__btn json__copy">Copy</button>
@@ -41,11 +42,18 @@
         <div class="column third__column">
           <textarea name="csv" id="csv__field" placeholder="Enter text here..."></textarea>
           <div class="ctn">
-            <span class="btn" id="clr__fields">Clear Fields</span> <br>
-            <span class="btn">Add CSV File</span>
+            <button class="btn" id="csv__clear">Clear Fields</button> <br>
+            <button class="btn csv__file">Add CSV File</button>
+            <input type="file" id="csvfileInput" style="display: none;" accept=".csv, .txt">
           </div>
           <textarea readonly class="output" id="csv__output"></textarea>
           <button class="copy__btn csv__copy">Copy</button>
+        </div>
+      </div>
+      <div class="error__container closed">
+        <div class="error__container-inner">
+          <p class="error__message"></p>
+          <span class="close__btn">X</span>
         </div>
       </div>
     </main>

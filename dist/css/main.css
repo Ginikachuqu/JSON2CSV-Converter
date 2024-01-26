@@ -83,10 +83,21 @@ main .column small {
 }
 main .column .ctn .btn {
   font-size: 0.8rem;
+  background: transparent;
+  outline: none;
+  border: none;
+  padding: .25rem;
+  color: #f4f4f4;
+  margin-top: .85rem;
   cursor: pointer;
-  text-decoration-line: underline;
-  transition: color 0.5s ease-in;
+  transition: all ease-in-out;
+  font-family: "Cutive Mono", monospace;
 }
+
+main .column .ctn .btn:hover {
+  border: 1px solid #f4f4f4;
+}
+
 main .column .ctn .btn:first-of-type {
   margin-right: 12px;
 }
@@ -146,6 +157,52 @@ main .second__column {
 main .second__column svg {
   width: 100%;
   height: 100%;
+}
+
+.error__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .5s ease-in-out;
+}
+
+.error__container .error__container-inner {
+  width: 50%;
+  padding: 1.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4f4f4;
+  border-radius: .85rem;
+  color: #000;
+}
+
+.error__container .error__container-inner p {
+  font-weight: bold;
+}
+
+.error__container .error__container-inner .close__btn {
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: .25s ease-in-out;
+}
+
+.error__container .error__container-inner .close__btn:hover {
+  transform: scale(1.1);
+}
+
+.error__container.open {
+  transform: translateY(0px);
+}
+
+.error__container.closed {
+  transform: translateY(-100%);
 }
 
 footer {

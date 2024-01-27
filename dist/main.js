@@ -22,6 +22,10 @@ const errorContainer = document.querySelector('.error__container')
 const errorMessage = document.querySelector('.error__container-inner p')
 const closeBtn = document.querySelector('.close__btn')
 
+// Download buttons
+const downloadJsonButton = document.querySelector('.json__download');
+const downloadCsvButton = document.querySelector('.csv__download');
+
 // SVG box transition
 svgBox.addEventListener("click", (e) => {
   svgBox.classList.toggle("rotate");
@@ -297,6 +301,56 @@ csvFileInput.addEventListener('change', function(event) {
       fileInput.value = '';
     }
   }
+});
+
+// Download functions
+// JSON
+downloadJsonButton.addEventListener('click', () => {
+  const jsonContent = JSONOutput.value;
+  console.log('runs')
+
+  // Create a Blob containing the JSON data
+  const blob = new Blob([jsonContent], { type: 'application/json' });
+
+  // Create a download link
+  const downloadLink = document.createElement('a');
+  downloadLink.href = window.URL.createObjectURL(blob);
+
+  // Set the file name
+  downloadLink.download = 'converted_data.json';
+
+  // Append the link to the body
+  document.body.appendChild(downloadLink);
+
+  // Trigger the click event to start the download
+  downloadLink.click();
+
+  // Remove the link from the body
+  document.body.removeChild(downloadLink);
+});
+
+// CSV
+downloadCsvButton.addEventListener('click', () => {
+  const csvContent = CSVOutput.value;
+
+  // Create a Blob containing the CSV data
+  const blob = new Blob([csvContent], { type: 'text/csv' });
+
+  // Create a download link
+  const downloadLink = document.createElement('a');
+  downloadLink.href = window.URL.createObjectURL(blob);
+
+  // Set the file name
+  downloadLink.download = 'converted_data.csv';
+
+  // Append the link to the body
+  document.body.appendChild(downloadLink);
+
+  // Trigger the click event to start the download
+  downloadLink.click();
+
+  // Remove the link from the body
+  document.body.removeChild(downloadLink);
 });
 
 // Error field

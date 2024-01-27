@@ -116,7 +116,7 @@ main .column .output {
   backdrop-filter: blur(2rem);
 }
 
-main .column .copy__btn {
+main .column .cta {
   background: transparent;
   outline: none;
   border: none;
@@ -128,7 +128,7 @@ main .column .copy__btn {
   font-family: "Cutive Mono", monospace;
 }
 
-main .column .copy__btn:hover {
+main .column .cta:hover {
   border-bottom: 1px solid #f4f4f4;
 }
 

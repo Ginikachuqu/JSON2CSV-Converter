@@ -7,9 +7,6 @@ const CSVInput = document.querySelector('#csv__field')
 const CSVOutput = document.querySelector('#csv__output')
 const csvcopyBtn = document.querySelector('.csv__copy')
 const csvClearField = document.querySelector('#csv__clear')
-const svgBox = document.querySelector(".second__column");
-const first__column = document.querySelector(".first__column");
-const third__column = document.querySelector(".third__column");
 
 // File Inputs
 const jsonFileBtn = document.querySelector('.json__file')
@@ -26,16 +23,34 @@ const closeBtn = document.querySelector('.close__btn')
 const downloadJsonButton = document.querySelector('.json__download');
 const downloadCsvButton = document.querySelector('.csv__download');
 
-// SVG box transition
-svgBox.addEventListener("click", (e) => {
-  svgBox.classList.toggle("rotate");
-  first__column.classList.toggle('translate__first')
-  third__column.classList.toggle('translate__third')
+// Field CTA
+const jsonCta = document.querySelector('.jsoncta')
+const csvCta = document.querySelector('.csvcta')
+
+// Fields
+const jsonField = document.querySelector('.json__field')
+const csvField = document.querySelector('.csv__field')
+
+// Display relevant field
+jsonCta.addEventListener('click', (e) => {
+  if (csvField.classList.contains('show')) {
+    csvField.classList.remove('show')
+    csvField.classList.add('hide')
+    jsonField.classList.remove('hide')
+    jsonField.classList.add('show')
+  }
+})
+
+csvCta.addEventListener('click', (e) => {
+  if (jsonField.classList.contains('show')) {
+    jsonField.classList.remove('show')
+    jsonField.classList.add('hide')
+    csvField.classList.remove('hide')
+    csvField.classList.add('show')
+  }
 })
 
 // Converter section
-
-
 function jsonToCsv(jsonData) {
   // Check if jsonData is an array and has at least one object
   if (!Array.isArray(jsonData)) {
@@ -132,30 +147,11 @@ JSONInput.addEventListener('input', (e) => {
     
     const csvData = jsonToCsv(jsonData);
 
-    CSVOutput.textContent = csvData;
+    JSONOutput.textContent = csvData;
 
   } catch (error) {
     // Handle invalid JSON input
     if (JSONInput.textContent = '') {
-      return
-    } else {
-      CSVOutput.textContent = 'Invalid JSON input. Please enter valid JSON data.';
-    }
-    console.log(error)
-  }
-})
-
-CSVInput.addEventListener('input', (e) => {
-  try {
-    const csvData = e.target.value;
-    
-    const jsonData = csvToJson(csvData);
-
-    JSONOutput.textContent = JSON.stringify(jsonData);
-
-  } catch (error) {
-    // Handle invalid JSON input
-    if (CSVInput.textContent = '') {
       return
     } else {
       JSONOutput.textContent = 'Invalid JSON input. Please enter valid JSON data.';
@@ -163,6 +159,25 @@ CSVInput.addEventListener('input', (e) => {
     console.log(error)
   }
 })
+
+// CSVInput.addEventListener('input', (e) => {
+//   try {
+//     const csvData = e.target.value;
+    
+//     const jsonData = csvToJson(csvData);
+
+//     JSONOutput.textContent = JSON.stringify(jsonData);
+
+//   } catch (error) {
+//     // Handle invalid JSON input
+//     if (CSVInput.textContent = '') {
+//       return
+//     } else {
+//       JSONOutput.textContent = 'Invalid JSON input. Please enter valid JSON data.';
+//     }
+//     console.log(error)
+//   }
+// })
 
 
 // Copy function
@@ -182,20 +197,20 @@ jsoncopyBtn.addEventListener('click', function() {
   alert('Text has been copied to the clipboard!');
 });
 
-csvcopyBtn.addEventListener('click', function() {
-  // Select the text in the textarea
-  CSVOutput.select();
-  CSVOutput.setSelectionRange(0, 99999); // For mobile devices
+// csvcopyBtn.addEventListener('click', function() {
+//   // Select the text in the textarea
+//   CSVOutput.select();
+//   CSVOutput.setSelectionRange(0, 99999); // For mobile devices
 
-  // Copy the selected text to the clipboard
-  document.execCommand('copy');
+//   // Copy the selected text to the clipboard
+//   document.execCommand('copy');
 
-  // Deselect the textarea
-  CSVOutput.setSelectionRange(0, 0);
+//   // Deselect the textarea
+//   CSVOutput.setSelectionRange(0, 0);
 
-  // Provide some feedback to the user (you can customize this part)
-  alert('Text has been copied to the clipboard!');
-});
+//   // Provide some feedback to the user (you can customize this part)
+//   alert('Text has been copied to the clipboard!');
+// });
 
 // Clear Fields
 jsonClearField.addEventListener('click', (e) => {
@@ -204,10 +219,10 @@ jsonClearField.addEventListener('click', (e) => {
   console.log(JSONInput.value)
 })
 
-csvClearField.addEventListener('click', (e) => {
-  CSVInput.value = ''
-  CSVOutput.value = ''
-})
+// csvClearField.addEventListener('click', (e) => {
+//   CSVInput.value = ''
+//   CSVOutput.value = ''
+// })
 
 // Read and convert files
 jsonFileBtn.addEventListener('click', (e) => {
@@ -228,7 +243,6 @@ jsonFileInput.addEventListener('change', function (event) {
 
       reader.onload = function (e) {
         const fileContent = e.target.result;
-        console.log(fileContent);
 
         try {
           // Parse JSON content
@@ -239,7 +253,7 @@ jsonFileInput.addEventListener('change', function (event) {
 
           // Set textarea values
           JSONInput.value = JSON.stringify(jsonData, null, 2);
-          CSVOutput.value = csvContent;
+          JSONOutput.value = csvContent;
         } catch (error) {
           errorMessage.textContent = 'Error parsing JSON';
           if (errorContainer.classList.contains('closed')) {
@@ -263,45 +277,45 @@ jsonFileInput.addEventListener('change', function (event) {
 });
 
 
-csvFileBtn.addEventListener('click', (e) => {
-  csvFileInput.click()
-})
+// csvFileBtn.addEventListener('click', (e) => {
+//   csvFileInput.click()
+// })
 
-csvFileInput.addEventListener('change', function(event) {
-  const fileInput = event.target;
-  const file = fileInput.files[0];
-  console.log(fileInput)
-  console.log(file)
+// csvFileInput.addEventListener('change', function(event) {
+//   const fileInput = event.target;
+//   const file = fileInput.files[0];
+//   console.log(fileInput)
+//   console.log(file)
 
-  if (file) {
-    const allowedExtensions = ['csv', 'txt'];
-    const fileNameParts = file.name.split('.');
-    const fileExtension = fileNameParts[fileNameParts.length - 1];
+//   if (file) {
+//     const allowedExtensions = ['csv', 'txt'];
+//     const fileNameParts = file.name.split('.');
+//     const fileExtension = fileNameParts[fileNameParts.length - 1];
 
 
-    if (allowedExtensions.includes(fileExtension.toLowerCase())) {
-      console.log('runs')
-      const reader = new FileReader();
+//     if (allowedExtensions.includes(fileExtension.toLowerCase())) {
+//       console.log('runs')
+//       const reader = new FileReader();
 
-      reader.onload = function(e) {
-        const fileContent = e.target.result;
-        console.log(fileContent)
-        CSVInput.value = fileContent;
-        JSONOutput.value = csvToJson(fileContent);
-      };
+//       reader.onload = function(e) {
+//         const fileContent = e.target.result;
+//         console.log(fileContent)
+//         CSVInput.value = fileContent;
+//         JSONOutput.value = csvToJson(fileContent);
+//       };
 
-      reader.readAsText(file); // Read the file as text
-    } else {
-      errorMessage.textContent = 'Invalid file format. Please select a .json, .csv, or .txt file.'
-      if (errorContainer.classList.contains('closed')) {
-        errorContainer.classList.remove('closed')
-        errorContainer.classList.add('open')
-      }
-      // Clear the file input
-      fileInput.value = '';
-    }
-  }
-});
+//       reader.readAsText(file); // Read the file as text
+//     } else {
+//       errorMessage.textContent = 'Invalid file format. Please select a .json, .csv, or .txt file.'
+//       if (errorContainer.classList.contains('closed')) {
+//         errorContainer.classList.remove('closed')
+//         errorContainer.classList.add('open')
+//       }
+//       // Clear the file input
+//       fileInput.value = '';
+//     }
+//   }
+// });
 
 // Download functions
 // JSON
@@ -330,28 +344,28 @@ downloadJsonButton.addEventListener('click', () => {
 });
 
 // CSV
-downloadCsvButton.addEventListener('click', () => {
-  const csvContent = CSVOutput.value;
+// downloadCsvButton.addEventListener('click', () => {
+//   const csvContent = CSVOutput.value;
 
-  // Create a Blob containing the CSV data
-  const blob = new Blob([csvContent], { type: 'text/csv' });
+//   // Create a Blob containing the CSV data
+//   const blob = new Blob([csvContent], { type: 'text/csv' });
 
-  // Create a download link
-  const downloadLink = document.createElement('a');
-  downloadLink.href = window.URL.createObjectURL(blob);
+//   // Create a download link
+//   const downloadLink = document.createElement('a');
+//   downloadLink.href = window.URL.createObjectURL(blob);
 
-  // Set the file name
-  downloadLink.download = 'converted_data.csv';
+//   // Set the file name
+//   downloadLink.download = 'converted_data.csv';
 
-  // Append the link to the body
-  document.body.appendChild(downloadLink);
+//   // Append the link to the body
+//   document.body.appendChild(downloadLink);
 
-  // Trigger the click event to start the download
-  downloadLink.click();
+//   // Trigger the click event to start the download
+//   downloadLink.click();
 
-  // Remove the link from the body
-  document.body.removeChild(downloadLink);
-});
+//   // Remove the link from the body
+//   document.body.removeChild(downloadLink);
+// });
 
 // Error field
 closeBtn.addEventListener('click', (e) => {

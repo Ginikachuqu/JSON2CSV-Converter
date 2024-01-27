@@ -22,28 +22,31 @@ header h2 {
 }
 
 main {
-  margin: 0 auto;
+  margin: 13% auto;
   max-width: 550px;
-  min-height: 400px;
+  min-height: 200px;
   border-radius: 1.5rem;
   padding: 1.5rem;
   background: #090909;
   background: -moz-linear-gradient(linear-gradient(to right bottom, rgba(32, 32, 32, 0.7), rgba(0, 0, 0, 0.1)));
   background: linear-gradient(linear-gradient(to right bottom, rgba(20, 20, 20, 0.3), rgba(0, 0, 0, 0.1)));
+  
 }
 
 main .container {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
 }
 
-main .container .column {
-  height: 100%;
+main .container .field {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  transition: .5s ease-in-out;
 }
-main .column textarea {
+
+main textarea {
   resize: none;
   display: block;
   /* width: 100%; */
@@ -74,14 +77,11 @@ textarea::-webkit-scrollbar-track {
   display: none;
 }
 
-main .column textarea:placeholder-shown {
-  color: #fff;
+main textarea:placeholder-shown {
+  color: #fff; 
 }
-main .column small {
-  display: inline-block;
-  margin-top: 5px;
-}
-main .column .ctn .btn {
+
+.ctn .btn {
   font-size: 0.8rem;
   background: transparent;
   outline: none;
@@ -94,20 +94,24 @@ main .column .ctn .btn {
   font-family: "Cutive Mono", monospace;
 }
 
-main .column .ctn .btn:hover {
+main .ctn .btn:hover {
   border: 1px solid #f4f4f4;
 }
 
-main .column .ctn .btn:first-of-type {
+main .ctn .btn:first-of-type {
   margin-right: 12px;
 }
-main .column .ctn .btn:hover {
+main .ctn .btn:hover {
   color: #f4f4f4;
 }
-main .column .output {
+
+.picker__container {
+  margin-bottom: 2rem;
+}
+
+main .output {
   width: 100%;
   min-height: 151px;
-  margin-top: 1rem;
   padding: 0.7rem;
   background: #131313;
   /* background: -moz-linear-gradient(to right bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)); */
@@ -116,7 +120,17 @@ main .column .output {
   backdrop-filter: blur(2rem);
 }
 
-main .column .cta {
+.field.show {
+  /* display: flex !important; */
+  opacity: 1;
+}
+
+.field.hide {
+  display: none !important;
+  opacity: 0;
+}
+
+.cta {
   background: transparent;
   outline: none;
   border: none;
@@ -128,19 +142,14 @@ main .column .cta {
   font-family: "Cutive Mono", monospace;
 }
 
-main .column .cta:hover {
+main .cta:hover {
   border-bottom: 1px solid #f4f4f4;
 }
 
-main .first__column {
-  transition: transform 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-}
 main .first__column::before {
   content: "JSON";
 }
-main .third__column {
-  transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
+
 main .third__column::before {
   content: "CSV";
 }

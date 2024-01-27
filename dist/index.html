@@ -14,43 +14,57 @@
     </header>
     <main>
       <div class="container">
-        <div class="column first__column">
-          <textarea name="json" id="json__field" placeholder="Enter text here..."></textarea>
-          <div class="ctn">
-            <button class="btn" id="json__clear">Clear Fields</button> <br>
-            <button class="btn json__file">Add JSON File</button>
-            <input type="file" id="jsonfileInput" style="display: none;" accept=".json, .txt">
+        <div class="picker__container">
+          <button class="cta jsoncta">JSON2CSV</button>
+          <button class="cta csvcta">CSV2JSON</button>
+        </div>
+        <div class="field json__field show">
+          <div class="input json__input">
+            <textarea name="json" id="json__field" placeholder="Enter text here..."></textarea>
+            <div class="ctn">
+              <button class="cta" id="json__clear">Clear Fields</button>
+              <button class="cta json__file">Add JSON File</button>
+              <input type="file" id="jsonfileInput" style="display: none;" accept=".json, .txt" />
+            </div>
           </div>
-          <textarea readonly class="output" id="json__output"></textarea>
-          <button class="cta json__copy">Copy</button>
-          <button class="cta json__download">Download JSON</button>
-        </div>
-        <div class="column second__column">
-          <?xml version="1.0" standalone="no"?>
-          <svg
-            width="1024px"
-            height="1024px"
-            fill="#fff"
-            viewBox="0 0 1024 1024"
-            xmlns="http://www.w3.org/2000/svg"
-            class="icon"
-          >
-            <path
-              d="M847.9 592H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h605.2L612.9 851c-4.1 5.2-.4 13 6.3 13h72.5c4.9 0 9.5-2.2 12.6-6.1l168.8-214.1c16.5-21 1.6-51.8-25.2-51.8zM872 356H266.8l144.3-183c4.1-5.2.4-13-6.3-13h-72.5c-4.9 0-9.5 2.2-12.6 6.1L150.9 380.2c-16.5 21-1.6 51.8 25.1 51.8h696c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z"
-            />
-          </svg>
-        </div>
-        <div class="column third__column">
-          <textarea name="csv" id="csv__field" placeholder="Enter text here..."></textarea>
-          <div class="ctn">
-            <button class="btn" id="csv__clear">Clear Fields</button> <br>
-            <button class="btn csv__file">Add CSV File</button>
-            <input type="file" id="csvfileInput" style="display: none;" accept=".csv, .txt">
+          <div class="result json__result">
+            <textarea readonly class="output" id="json__output"></textarea>
+            <button class="cta json__copy">Copy</button>
+            <button class="cta json__download">Download JSON</button>
           </div>
-          <textarea readonly class="output" id="csv__output"></textarea>
-          <button class="cta csv__copy">Copy</button>
-          <button class="cta csv__download">Download CSV</button>
         </div>
+
+        <div class="field csv__field hide">
+          <div class="input csv__input">
+            <textarea name="csv" id="csv__field" placeholder="Enter text here..."></textarea>
+            <div class="ctn">
+              <button class="cta" id="csv__clear">Clear Fields</button>
+              <button class="cta csv__file">Add CSV File</button>
+              <input type="file" id="csvfileInput" style="display: none;" accept=".csv, .txt" />
+            </div>
+          </div>
+          <div class="result csv__result">
+            <textarea readonly class="output" id="csv__output"></textarea>
+            <button class="cta csv__copy">Copy</button>
+            <button class="cta csv__download">Download CSV</button>
+          </div>
+        </div>
+        
+        <!-- <div class="column third__column">
+          <div class="input csv__input">
+            <textarea name="csv" id="csv__field" placeholder="Enter text here..."></textarea>
+            <div class="ctn">
+              <button class="btn" id="csv__clear">Clear Fields</button> <br>
+              <button class="btn csv__file">Add CSV File</button>
+              <input type="file" id="csvfileInput" style="display: none;" accept=".csv, .txt">
+            </div>
+          </div>
+          <div class="output csv__output">
+            <textarea readonly class="output" id="csv__output"></textarea>
+            <button class="cta csv__copy">Copy</button>
+            <button class="cta csv__download">Download CSV</button>
+          </div>
+        </div> -->
       </div>
       <div class="error__container closed">
         <div class="error__container-inner">

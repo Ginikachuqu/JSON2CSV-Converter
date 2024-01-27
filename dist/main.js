@@ -210,41 +210,54 @@ jsonFileBtn.addEventListener('click', (e) => {
   jsonFileInput.click()
 })
 
-jsonFileInput.addEventListener('change', function(event) {
+jsonFileInput.addEventListener('change', function (event) {
   const fileInput = event.target;
   const file = fileInput.files[0];
-  console.log(fileInput)
-  console.log(file)
 
   if (file) {
     const allowedExtensions = ['json', 'txt'];
     const fileNameParts = file.name.split('.');
     const fileExtension = fileNameParts[fileNameParts.length - 1];
 
-
     if (allowedExtensions.includes(fileExtension.toLowerCase())) {
-      console.log('runs')
       const reader = new FileReader();
 
-      reader.onload = function(e) {
+      reader.onload = function (e) {
         const fileContent = e.target.result;
-        console.log(fileContent)
-        JSONInput.value = fileContent;
-        CSVOutput.value = jsonToCsv(fileContent);
+        console.log(fileContent);
+
+        try {
+          // Parse JSON content
+          const jsonData = JSON.parse(fileContent);
+
+          // Convert to CSV
+          const csvContent = jsonToCsv(jsonData);
+
+          // Set textarea values
+          JSONInput.value = JSON.stringify(jsonData, null, 2);
+          CSVOutput.value = csvContent;
+        } catch (error) {
+          errorMessage.textContent = 'Error parsing JSON';
+          if (errorContainer.classList.contains('closed')) {
+            errorContainer.classList.remove('closed');
+            errorContainer.classList.add('open');
+          }
+        }
       };
 
       reader.readAsText(file); // Read the file as text
     } else {
-      errorMessage.textContent = 'Invalid file format. Please select a .json, .csv, or .txt file.'
+      errorMessage.textContent = 'Invalid file format. Please select a .json, .csv, or .txt file.';
       if (errorContainer.classList.contains('closed')) {
-        errorContainer.classList.remove('closed')
-        errorContainer.classList.add('open')
+        errorContainer.classList.remove('closed');
+        errorContainer.classList.add('open');
       }
       // Clear the file input
       fileInput.value = '';
     }
   }
 });
+
 
 csvFileBtn.addEventListener('click', (e) => {
   csvFileInput.click()

@@ -22,10 +22,10 @@ header h2 {
 }
 
 main {
-  margin: 13% auto;
+  margin: 5.5rem auto;
   max-width: 550px;
   min-height: 200px;
-  border-radius: 1.5rem;
+  border-radius: .5rem;
   padding: 1.5rem;
   background: #090909;
   background: -moz-linear-gradient(linear-gradient(to right bottom, rgba(32, 32, 32, 0.7), rgba(0, 0, 0, 0.1)));
@@ -51,28 +51,25 @@ main textarea {
   display: block;
   /* width: 100%; */
   min-height: 151px;
-  border-radius: 1.5rem;
+  border-radius: .5rem;
   outline: none;
   border: none;
   padding: 1rem;
   background: transparent;
   color: #fff;
   border: 1px solid #fff;
-
-  scrollbar-color: #dcdcdc #f0f0f0; /* Firefox */
-  scrollbar-width: thin;
 }
 
-textarea::-webkit-scrollbar {
+main textarea::-webkit-scrollbar {
   width: 5px; /* WebKit browsers */
 }
 
-textarea::-webkit-scrollbar-thumb {
+main textarea::-webkit-scrollbar-thumb {
   background-color: #4caf50; /* Color of the scrollbar thumb */
   border-radius: 5px; /* Rounded corners */
 }
 
-textarea::-webkit-scrollbar-track {
+main textarea::-webkit-scrollbar-track {
   background-color: #f0f0f0; /* Color of the scrollbar track */
   display: none;
 }
@@ -116,7 +113,7 @@ main .output {
   background: #131313;
   /* background: -moz-linear-gradient(to right bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)); */
   /* background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)); */
-  border-radius: 1.5rem;
+  border-radius: .5rem;
   backdrop-filter: blur(2rem);
 }
 
@@ -131,6 +128,9 @@ main .output {
 }
 
 .cta {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
   background: transparent;
   outline: none;
   border: none;
@@ -142,30 +142,12 @@ main .output {
   font-family: "Cutive Mono", monospace;
 }
 
+.cta svg {
+  fill: #f4f4f4;
+}
+
 main .cta:hover {
   border-bottom: 1px solid #f4f4f4;
-}
-
-main .first__column::before {
-  content: "JSON";
-}
-
-main .third__column::before {
-  content: "CSV";
-}
-main .second__column {
-  width: 40px;
-  height: 40px;
-  padding: 0.3rem;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  align-self: center;
-  cursor: pointer;
-  transition: transform 0.5s ease-in-out;
-}
-main .second__column svg {
-  width: 100%;
-  height: 100%;
 }
 
 .error__container {
@@ -215,7 +197,7 @@ main .second__column svg {
 }
 
 footer {
-  margin-top: 1.2rem;
+  margin-top: .75rem;
   text-align: center;
 }
 footer a {
@@ -226,17 +208,25 @@ footer a:hover {
   color: #f4f4f4;
 }
 
-.rotate {
-  transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-}
 
-.translate__first {
-  transform: translateX(135%);
-}
 
-.translate__third {
-  transform: translateX(-135%);
-}
+@media screen and (max-width: 500px) {
+  main {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+    max-width: 270px;
+  }
 
+  .field {
+    flex-direction: column;
+  }
+
+  main textarea {
+    width: 100%;
+  }
+
+  footer {
+    margin-top: 0;
+  }
+}
 /*# sourceMappingURL=main.css.map */

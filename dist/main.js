@@ -106,7 +106,7 @@ document.body.addEventListener('click', (e) => {
         // Deselect the textarea
         JSONOutput.setSelectionRange(0, 0);
 
-        // Provide some feedback to the user (you can customize this part)
+        // Provide some feedback to the user
         alert('Text has been copied to the clipboard!');
       });
     } else if (target === jsonClearField) {
@@ -114,12 +114,13 @@ document.body.addEventListener('click', (e) => {
       jsonClearField.addEventListener('click', (e) => {
         JSONInput.value = ''
         JSONOutput.value = ''
-      })
+      }, {once: true})
     } else if (target === jsonFileBtn) {
+
       // Read and convert files
       jsonFileBtn.addEventListener('click', (e) => {
         jsonFileInput.click()
-      })
+      }, {once: true})
 
       jsonFileInput.addEventListener('change', function (event) {
         const fileInput = event.target;
@@ -258,16 +259,17 @@ document.body.addEventListener('click', (e) => {
       
         // Provide some feedback to the user (you can customize this part)
         alert('Text has been copied to the clipboard!');
-      });
+      }, {once: true});
     } else if (target === csvClearField) {
       csvClearField.addEventListener('click', (e) => {
         CSVInput.value = ''
         CSVOutput.value = ''
-      })
+      }, {once: true})
     } else if (target === csvFileBtn) {
       csvFileBtn.addEventListener('click', (e) => {
         csvFileInput.click()
-      })
+        
+      }, {once: true})
       
       csvFileInput.addEventListener('change', function(event) {
         const fileInput = event.target;
@@ -287,9 +289,10 @@ document.body.addEventListener('click', (e) => {
               const fileContent = e.target.result;
               
               CSVInput.value = fileContent;
+
+              const jsonData = csvToJson(fileContent);
               
-              CSVOutput.value = csvToJson(fileContent);
-              
+              CSVOutput.value = JSON.stringify(jsonData, null, 2);
             };
       
             reader.readAsText(file); // Read the file as text
@@ -326,7 +329,7 @@ document.body.addEventListener('click', (e) => {
       
         // Remove the link from the body
         document.body.removeChild(downloadLink);
-      });
+      }, {once: true});
     }
   }
 });
